@@ -16,6 +16,17 @@ app.use bodyParser.urlencoded(extended: false)
 app.use bodyParser.json()
 #endregion
 
+
+#################################################################
+mountMiddleWare = (middleWare) ->
+    if typeof middleWare ==  "function"
+        app.use middleWare
+        return
+    if middleWare.length?
+        app.use fun for fun in middleWare
+        return
+    return
+
 ############################################################
 attachSCIFunctions = ->
     app.post "/"+route,fun for route,fun of routes
@@ -28,11 +39,13 @@ listenForRequests = ->
     return
 
 ############################################################
-exports.prepareAndExpose = (leRoutes, lePort = 3333) ->
+exports.prepareAndExpose = (middleWare, leRoutes, lePort = 3333) ->
     throw new Error("No routes Object provided!") unless typeof leRoutes == "object"
     
     routes = leRoutes
     port = process.env.PORT || lePort
+
+    if middleWare? then mountMiddleWare(middleWare)
 
     attachSCIFunctions()
     listenForRequests()

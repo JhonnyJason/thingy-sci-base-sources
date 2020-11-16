@@ -5,14 +5,14 @@ For the purpose of abstracting away the handling of express on my rest services.
 As this code would be unnecessary and cluttering the real code.
 
 # What?
-A small packages depending on express, systemd and body-parser for the purpose to directly mount my route-handlers.
+A small packages depending on express, systemd and body-parser for the purpose to directly mount my route-handlers and hook some middleware before.
 
 All routes are mounted for POST. As I want allmighty JSON RPCs for everything and nothing else.
 
 Current Functionality
 ---------------------
 ```coffeescript
-prepareAndExpose = (routes, port = 3333)
+prepareAndExpose = (middleWare, routes, port = 3333)
 ```
 
 `routes` is an object which actually is a map of `route -> function`
@@ -30,6 +30,12 @@ routes.requestTwo = (res, req) ->
     res.send("The other Response!")
 
 ```
+
+## middleWare
+- Could be a single function
+- or an array of functions
+
+These will be mounted before we mount the routes. e.G authorization
 
 ## SystemD Sockets
 When there is `process.env.SOCKETMODE == true` then we will listen on systemd socket.
