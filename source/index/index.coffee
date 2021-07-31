@@ -29,7 +29,7 @@ mountMiddleWare = (middleWare) ->
 
 ############################################################
 attachSCIFunctions = ->
-    app.post "/"+route,fun for route,fun of routes
+    app.post("/"+route,fun) for route,fun of routes
     return
 
 #################################################################
