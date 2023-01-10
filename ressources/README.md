@@ -8,12 +8,15 @@ This this is a small packages depending on express, systemd and body-parser for 
 
 All routes are mounted for POST. As I want allmighty JSON RPCs for everything and nothing else.
 
+Also by default `proxy trust` is set to 1. As it is mainly made for a nodejs service waiting behind a NGINX reverse-proxy to termine SSL. For information about `proxy trust` see [here](https://expressjs.com/en/guide/behind-proxies.html). 
+
 # Usage
 
 Current Functionality
 ---------------------
 ```coffeescript
 prepareAndExpose = (middleWare, routes, port = 3333)
+setProxyTrust = (proxyTrustParam)
 ```
 
 `routes` is an object which actually is a map of `route -> function`
@@ -50,6 +53,16 @@ If we provide nothing then the default is port 3333.
 Be aware this service is primarily thought to stay behind an nginx who terminates ssl for it - therefore proxypass to socket ;-). 
 
 So we donot use SSL here which might be a security concern to be aware of.
+
+## Express ProxyTrustParam
+
+This is 1:1 the parameter to be passed to: `app.set("proxy_trust", proxyTrustParam)`
+
+It can be false to turn off trusting any proxy.
+As a number it says for how many proxies to be trusted along the line.
+The default being 1 means only trust the first proxy.
+
+More complex Options might be chosen. For further information see [here](https://expressjs.com/en/guide/behind-proxies.html).
 
 ---
 

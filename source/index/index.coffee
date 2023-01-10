@@ -47,6 +47,7 @@ port = null
 
 ############################################################
 app = express()
+app.set("trust proxy", 1)
 app.use bodyParser.urlencoded(extended: false)
 app.use bodyParser.json()
 #endregion
@@ -71,6 +72,11 @@ attachSCIFunctions = ->
 listenForRequests = ->
     if process.env.SOCKETMODE then app.listen "systemd"
     else app.listen port
+    return
+
+############################################################
+export setProxyTrust = (arg) ->
+    app.set("trust proxy", arg)
     return
 
 ############################################################
