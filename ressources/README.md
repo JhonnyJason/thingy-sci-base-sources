@@ -10,6 +10,8 @@ All routes are mounted for POST. As I want allmighty JSON RPCs for everything an
 
 Also by default `proxy trust` is set to 1. As it is mainly made for a nodejs service waiting behind a NGINX reverse-proxy to termine SSL. For information about `proxy trust` see [here](https://expressjs.com/en/guide/behind-proxies.html). 
 
+Also by default `etag` is disabled.
+
 # Usage
 
 Current Functionality
