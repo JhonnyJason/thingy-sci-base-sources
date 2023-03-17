@@ -48,8 +48,9 @@ port = null
 ############################################################
 app = express()
 app.set("trust proxy", 1)
-app.use bodyParser.urlencoded(extended: false)
-app.use bodyParser.json()
+app.disable("etag")
+
+app.use(express.json())
 #endregion
 
 
@@ -65,7 +66,7 @@ mountMiddleWare = (middleWare) ->
 
 ############################################################
 attachSCIFunctions = ->
-    app.post("/"+route,fun) for route,fun of routes
+    app.post("/#{route}",fun) for route,fun of routes
     return
 
 #################################################################
@@ -75,9 +76,7 @@ listenForRequests = ->
     return
 
 ############################################################
-export setProxyTrust = (arg) ->
-    app.set("trust proxy", arg)
-    return
+export getExpressApp =  -> app
 
 ############################################################
 export prepareAndExpose = (middleWare, leRoutes, lePort = 3333) ->

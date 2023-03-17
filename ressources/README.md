@@ -16,7 +16,7 @@ Current Functionality
 ---------------------
 ```coffeescript
 prepareAndExpose = (middleWare, routes, port = 3333)
-setProxyTrust = (proxyTrustParam)
+getExpressApp = () -> expressApplication
 ```
 
 `routes` is an object which actually is a map of `route -> function`
@@ -54,15 +54,18 @@ Be aware this service is primarily thought to stay behind an nginx who terminate
 
 So we donot use SSL here which might be a security concern to be aware of.
 
-## Express ProxyTrustParam
+## Express Configuration
 
-This is 1:1 the parameter to be passed to: `app.set("proxy_trust", proxyTrustParam)`
+By default we set 
+- `proxy_trust` to `true` 
+- `etag` to `false`
 
-It can be false to turn off trusting any proxy.
-As a number it says for how many proxies to be trusted along the line.
-The default being 1 means only trust the first proxy.
+This is because we are always running behind our trusted nginx reverse proxy.
+Also we never deliver a ressource where caching could make sense. 
 
-More complex Options might be chosen. For further information see [here](https://expressjs.com/en/guide/behind-proxies.html).
+Use `getExpressApp()` for any manual configuration.
+
+See [here](https://expressjs.com/en/4x/api.html).
 
 ---
 
