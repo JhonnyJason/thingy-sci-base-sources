@@ -14,7 +14,7 @@
         "rest"
     ],
     "author": "Lenard Frommelt lenard@frommelt.dev",
-    "license": "Unlicense",
+    "license": "CC0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/JhonnyJason/thingy-sci-base-output.git"
