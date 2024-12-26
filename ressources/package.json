@@ -1,6 +1,6 @@
 {
     "name": "thingy-sci-base",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "A basic express abstraction for service thingies to directly inject post routes and handlers.",
     "main": "index.js",
     "scripts": {
@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/JhonnyJason/thingy-sci-base-output#readme",
     "dependencies": {
-        "express": "^4.18.2"
+        "express": "^4.21.2"
     },
     "type": "module"
 }

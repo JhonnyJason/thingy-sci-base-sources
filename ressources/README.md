@@ -25,12 +25,12 @@ getExpressApp = () -> expressApplication
 ```coffeescript
 routes = {}
 
-routes.requestOne = (res, req) ->
+routes.requestOne = (req, res) ->
     # req.body is our json
     # handle
     res.send("The Response!")
 
-routes.requestTwo = (res, req) ->
+routes.requestTwo = (re1, res) ->
     # req.body is our json
     # handle
     res.send("The other Response!")
