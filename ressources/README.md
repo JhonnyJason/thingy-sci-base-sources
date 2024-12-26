@@ -30,7 +30,7 @@ routes.requestOne = (req, res) ->
     # handle
     res.send("The Response!")
 
-routes.requestTwo = (re1, res) ->
+routes.requestTwo = (req, res) ->
     # req.body is our json
     # handle
     res.send("The other Response!")
